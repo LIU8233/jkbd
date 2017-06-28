@@ -27,7 +27,7 @@ public class sp extends AppCompatActivity {
         public void onFinish() {
             Intent intent=new Intent(sp.this,MainActivity.class);
             startActivity(intent);
-
+            sp.this.finish();
         }
     };
 }
