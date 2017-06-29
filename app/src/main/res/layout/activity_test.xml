@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@mipmap/main"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/exam_title"
+        tools:text="@string/exam_title"
         android:textColor="#000"
         android:layout_marginLeft="20dp"
        />
@@ -38,14 +38,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="这个标志是何含义"
+            tools:text="这个标志是何含义"
             android:textSize="20dp"
             android:textColor="#000"/>
     </LinearLayout>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/exam_65"
+        tools:src="@mipmap/exam_65"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"/>
     <LinearLayout
@@ -62,7 +62,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="非机动车道"
+            tools:text="非机动车道"
             android:textSize="15dp"
             android:textColor="#000"/>
     </LinearLayout>
@@ -80,7 +80,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="摩托车专用道"
+            tools:text="摩托车专用道"
             android:textSize="15dp"
             android:textColor="#000"/>
     </LinearLayout>
@@ -98,7 +98,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="电瓶车专用道"
+            tools:text="电瓶车专用道"
             android:textSize="15dp"
             android:textColor="#000"/>
     </LinearLayout>
@@ -116,7 +116,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="自行车专用道"
+            tools:text="自行车专用道"
             android:textSize="15dp"
             android:textColor="#000"/>
     </LinearLayout>
