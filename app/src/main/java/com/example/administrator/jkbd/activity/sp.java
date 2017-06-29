@@ -19,7 +19,7 @@ public class sp extends AppCompatActivity {
         setContentView(R.layout.activity_sp);
         mCountDownTimer.start();
     }
-    CountDownTimer mCountDownTimer=new CountDownTimer(3000,1000){
+    CountDownTimer mCountDownTimer=new CountDownTimer(2000,1000){
         @Override
         public void onTick(long millisUntilFinished) {
 
