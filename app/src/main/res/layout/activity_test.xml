@@ -17,7 +17,8 @@
         android:layout_height="wrap_content"
         android:text="@string/exam_title"
         android:textColor="#000"
-        android:layout_marginLeft="20dp"/>
+        android:layout_marginLeft="20dp"
+       />
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -44,8 +45,9 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/exam_title"
-        android:layout_gravity="center_horizontal"/>
+        android:src="@mipmap/exam_65"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,7 +62,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="距有人看守铁路道口50米"
+            android:text="非机动车道"
             android:textSize="15dp"
             android:textColor="#000"/>
     </LinearLayout>
@@ -78,7 +80,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="距有人看守铁路道口50米"
+            android:text="摩托车专用道"
             android:textSize="15dp"
             android:textColor="#000"/>
     </LinearLayout>
@@ -96,7 +98,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="距有人看守铁路道口50米"
+            android:text="电瓶车专用道"
             android:textSize="15dp"
             android:textColor="#000"/>
     </LinearLayout>
@@ -114,14 +116,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="距有人看守铁路道口50米"
+            android:text="自行车专用道"
             android:textSize="15dp"
             android:textColor="#000"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+
+        android:gravity="center_horizontal">
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
