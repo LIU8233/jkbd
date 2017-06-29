@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
 
         </activity>
-        <activity android:name=".sp">
+        <activity android:name=".activity.sp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

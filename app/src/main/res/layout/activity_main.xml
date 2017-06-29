@@ -21,6 +21,7 @@
             android:text="随机测试"
             android:drawableTop="@mipmap/main_menu_exam"
             android:background="@null"
+            android:onClick="test"
             android:layout_weight="1"/>
         <Button
             android:id="@+id/button2"
