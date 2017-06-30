@@ -37,6 +37,7 @@
             android:textSize="20dp"
             android:textColor="#000"/>
         <TextView
+            android:id="@+id/tv_question_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="这个标志是何含义"
@@ -44,6 +45,7 @@
             android:textColor="#000"/>
     </LinearLayout>
     <ImageView
+        android:id="@+id/image_question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:src="@mipmap/exam_65"
@@ -53,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="10dp">
+        android:layout_marginLeft="15dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,6 +63,7 @@
             android:textSize="20dp"
             android:textColor="#000"/>
         <TextView
+            android:id="@+id/tv_answer_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="非机动车道"
@@ -71,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="10dp">
+        android:layout_marginLeft="15dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -79,6 +82,7 @@
             android:textSize="20dp"
             android:textColor="#000"/>
         <TextView
+            android:id="@+id/tv_answer_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="摩托车专用道"
@@ -89,7 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="10dp">
+        android:layout_marginLeft="15dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,6 +101,7 @@
             android:textSize="20dp"
             android:textColor="#000"/>
         <TextView
+            android:id="@+id/tv_answer_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="电瓶车专用道"
@@ -107,7 +112,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="10dp">
+        android:layout_marginLeft="15dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -115,6 +120,7 @@
             android:textSize="20dp"
             android:textColor="#000"/>
         <TextView
+            android:id="@+id/tv_answer_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="自行车专用道"
