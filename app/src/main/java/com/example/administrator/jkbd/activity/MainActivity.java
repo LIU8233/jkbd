@@ -16,11 +16,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
     public void test(View view) {
-
-        startActivity(new Intent(MainActivity.this,testActivity.class));
+        Intent intent=new Intent(MainActivity.this,testActivity.class);
+        startActivity(intent);
+        //startActivity(new Intent(MainActivity.this,testActivity.class));
     }
 
     public void exit(View view) {

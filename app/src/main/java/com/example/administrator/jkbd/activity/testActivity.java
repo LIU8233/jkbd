@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.jkbd.ExamApplication;
@@ -19,6 +20,7 @@ import java.util.List;
 
 public class testActivity extends AppCompatActivity {
     TextView tvInfo,tvExamTitle,tv1,tv2,tv3,tv4;
+    ImageView mImageView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +30,13 @@ public class testActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        mImageView= (ImageView) findViewById(R.id.image_question);
         tvInfo= (TextView) findViewById(R.id.tv_testInfo);
         tvExamTitle= (TextView) findViewById(R.id.tv_question_title);
-        tvInfo= (TextView) findViewById(R.id.tv_answer_1);
-        tvInfo= (TextView) findViewById(R.id.tv_answer_2);
-        tvInfo= (TextView) findViewById(R.id.tv_answer_3);
-        tvInfo= (TextView) findViewById(R.id.tv_answer_4);
+        tv1= (TextView) findViewById(R.id.tv_answer_1);
+        tv2= (TextView) findViewById(R.id.tv_answer_2);
+        tv3= (TextView) findViewById(R.id.tv_answer_3);
+        tv4= (TextView) findViewById(R.id.tv_answer_4);
     }
 
     private void initData() {
@@ -51,6 +54,10 @@ public class testActivity extends AppCompatActivity {
         Question exam=examList.get(0);
         if (exam!=null){
             tvExamTitle.setText(exam.getQuestion());
+            tv1.setText(exam.getItem1());
+            tv2.setText(exam.getItem2());
+            tv3.setText(exam.getItem3());
+            tv4.setText(exam.getItem4());
         }
     }
 

@@ -49,16 +49,16 @@ public class ExamApplication extends Application{
 
                             }
                         });
-                OkHttpUtils<String> utils1=new OkHttpUtils<String>(instane);
+                OkHttpUtils<String> utils1=new OkHttpUtils<>(instane);
                 String url2="http://101.251.196.90:8080/JztkServer/getQuestions?testType=rand";
                 utils1.url(url2)
                         .targetClass(String.class)
                         .execute(new OkHttpUtils.OnCompleteListener<String>() {
                             @Override
                             public void onSuccess(String jsonStr) {
-                                Results results = ResultUtils.getListResultFromJson(jsonStr);
-                                if (results!=null&&results.getError_code()==0){
-                                    List<Question> list=results.getResult();
+                                Results result = ResultUtils.getListResultFromJson(jsonStr);
+                                if (result!=null&&result.getError_code()==0){
+                                    List<Question> list=result.getResult();
                                     if (list!=null&&list.size()>0){
                                         mquestion=list;
                                     }
