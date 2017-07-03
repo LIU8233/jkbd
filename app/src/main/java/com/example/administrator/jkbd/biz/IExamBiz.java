@@ -7,4 +7,6 @@ package com.example.administrator.jkbd.biz;
 public interface IExamBiz {
     void beginExam();
     void nextQuestion();
+    void preQuestion();
+    void commitExam();
 }
