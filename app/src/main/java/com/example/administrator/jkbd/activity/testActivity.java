@@ -9,7 +9,10 @@ import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.administrator.jkbd.ExamApplication;
@@ -27,19 +30,24 @@ import java.util.List;
  */
 
 public class testActivity extends AppCompatActivity {
-    TextView tvInfo,tvExamTitle,tv1,tv2,tv3,tv4;
+    TextView tvInfo,tvExamTitle,tv1,tv2,tv3,tv4,tvLoad;
     ImageView mImageView;
+    ProgressBar dialog;
     IExamBiz biz;
     boolean isExamInfo=false;
     boolean isQuestion=false;
     LoadExamBrcadcast mLoadExamBrcadcast;
     LoadQuestionBrcadcast mLoadQuestionBrcadcast;
+    LinearLayout layoutLoading;
+    boolean isExamInfoReceiver=false;
+    boolean isQuestionReceiver=false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         mLoadExamBrcadcast=new LoadExamBrcadcast();
         mLoadQuestionBrcadcast=new LoadQuestionBrcadcast();
+        biz=new ExamBiz();
         setListrener();
         initView();
         loadData();
@@ -51,7 +59,9 @@ public class testActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-        biz=new ExamBiz();
+        layoutLoading.setEnabled(false);
+        dialog.setVisibility(View.VISIBLE);
+        tvLoad.setText("下载数据！");
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -62,6 +72,7 @@ public class testActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        dialog= (ProgressBar) findViewById(R.id.dia_log);
         mImageView= (ImageView) findViewById(R.id.image_question);
         tvInfo= (TextView) findViewById(R.id.tv_testInfo);
         tvExamTitle= (TextView) findViewById(R.id.tv_question_title);
@@ -69,6 +80,15 @@ public class testActivity extends AppCompatActivity {
         tv2= (TextView) findViewById(R.id.tv_answer_2);
         tv3= (TextView) findViewById(R.id.tv_answer_3);
         tv4= (TextView) findViewById(R.id.tv_answer_4);
+        tvLoad= (TextView) findViewById(R.id.tv_load);
+        layoutLoading= (LinearLayout) findViewById(R.id.loading);
+        layoutLoading.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                loadData();
+
+            }
+        });
     }
 
     @Override
@@ -83,16 +103,26 @@ public class testActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        if (isExamInfo&&isQuestion) {
-            Testtime testtime = ExamApplication.getInstance().getmTesttime();
-            if (testtime != null) {
-                showData(testtime);
+        if(isExamInfoReceiver&&isQuestionReceiver){
+            if (isExamInfo&&isQuestion) {
+                layoutLoading.setVisibility(View.GONE);
+                Testtime testtime = ExamApplication.getInstance().getmTesttime();
+                if (testtime != null) {
+                    showData(testtime);
+                }
+                List<Question> examList = ExamApplication.getInstance().getMquestion();
+                if (examList != null) {
+                    showExam(examList);
+                }
             }
-            List<Question> examList = ExamApplication.getInstance().getMquestion();
-            if (examList != null) {
-                showExam(examList);
+            else {
+                layoutLoading.setEnabled(true);
+                dialog.setVisibility(View.GONE);
+                tvLoad.setText("下载失败，点击重新下载！");
+
             }
         }
+
     }
 
     private void showExam(List<Question> examList) {
@@ -122,6 +152,7 @@ public class testActivity extends AppCompatActivity {
             if(isSuccess){
                 isExamInfo=true;
             }
+            isExamInfoReceiver=true;
             initData();
 
         }
@@ -136,6 +167,7 @@ public class testActivity extends AppCompatActivity {
             if(isSuccess){
                 isQuestion=true;
             }
+            isQuestionReceiver=true;
             initData();
 
         }
