@@ -11,6 +11,7 @@ import com.example.administrator.jkbd.ExamApplication;
 import com.example.administrator.jkbd.R;
 import com.example.administrator.jkbd.bean.Question;
 import com.example.administrator.jkbd.bean.Testtime;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -58,6 +59,9 @@ public class testActivity extends AppCompatActivity {
             tv2.setText(exam.getItem2());
             tv3.setText(exam.getItem3());
             tv4.setText(exam.getItem4());
+            Picasso.with(testActivity.this)
+                    .load(exam.getUrl())
+                    .into(mImageView);
         }
     }
 
