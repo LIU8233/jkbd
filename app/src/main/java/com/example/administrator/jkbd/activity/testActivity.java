@@ -30,7 +30,7 @@ import java.util.List;
  */
 
 public class testActivity extends AppCompatActivity {
-    TextView tvInfo,tvExamTitle,tv1,tv2,tv3,tv4,tvLoad;
+    TextView tvInfo,tvExamTitle,tv1,tv2,tv3,tv4,tvLoad,tvExamnNo;
     ImageView mImageView;
     ProgressBar dialog;
     IExamBiz biz;
@@ -74,6 +74,7 @@ public class testActivity extends AppCompatActivity {
     private void initView() {
         dialog= (ProgressBar) findViewById(R.id.dia_log);
         mImageView= (ImageView) findViewById(R.id.image_question);
+        tvExamnNo= (TextView) findViewById(R.id.tv_no);
         tvInfo= (TextView) findViewById(R.id.tv_testInfo);
         tvExamTitle= (TextView) findViewById(R.id.tv_question_title);
         tv1= (TextView) findViewById(R.id.tv_answer_1);
@@ -110,10 +111,7 @@ public class testActivity extends AppCompatActivity {
                 if (testtime != null) {
                     showData(testtime);
                 }
-                List<Question> examList = ExamApplication.getInstance().getMquestion();
-                if (examList != null) {
-                    showExam(examList);
-                }
+                    showExam(biz.getExam());
             }
             else {
                 layoutLoading.setEnabled(true);
@@ -125,22 +123,36 @@ public class testActivity extends AppCompatActivity {
 
     }
 
-    private void showExam(List<Question> examList) {
-        Question exam=examList.get(0);
+    private void showExam(Question exam) {
+        Log.e("showExam","showExam,exam="+exam);
         if (exam!=null){
+            tvExamnNo.setText(biz.getExamIndex());
             tvExamTitle.setText(exam.getQuestion());
             tv1.setText(exam.getItem1());
             tv2.setText(exam.getItem2());
             tv3.setText(exam.getItem3());
             tv4.setText(exam.getItem4());
-            Picasso.with(testActivity.this)
-                    .load(exam.getUrl())
-                    .into(mImageView);
+            //if (exam.getUrl()!=null&&exam.getUrl().equals("")) {
+                //mImageView.setVisibility(View.VISIBLE);
+                Picasso.with(testActivity.this)
+                        .load(exam.getUrl())
+                        .into(mImageView);
+            //}else {
+                //mImageView.setVisibility(View.GONE);
+           // }
         }
     }
 
     private void showData(Testtime testtime) {
         tvInfo.setText(testtime.toString());
+    }
+
+    public void preExam(View view) {
+        showExam(biz.preQuestion());
+    }
+
+    public void nextExam(View view) {
+        showExam(biz.nextQuestion());
     }
 
     class LoadExamBrcadcast extends BroadcastReceiver{
