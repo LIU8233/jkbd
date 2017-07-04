@@ -132,14 +132,14 @@ public class testActivity extends AppCompatActivity {
             tv2.setText(exam.getItem2());
             tv3.setText(exam.getItem3());
             tv4.setText(exam.getItem4());
-            //if (exam.getUrl()!=null&&exam.getUrl().equals("")) {
-                //mImageView.setVisibility(View.VISIBLE);
+            if (exam.getUrl()!=null&&!exam.getUrl().equals("")) {
+                mImageView.setVisibility(View.VISIBLE);
                 Picasso.with(testActivity.this)
                         .load(exam.getUrl())
                         .into(mImageView);
-            //}else {
-                //mImageView.setVisibility(View.GONE);
-           // }
+            }else {
+                mImageView.setVisibility(View.GONE);
+            }
         }
     }
 
