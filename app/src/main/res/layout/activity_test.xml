@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:text="下载试题中..."
             android:textColor="#000"
-            android:textSize="18px"
+            android:textSize="20px"
             android:gravity="center_horizontal"/>
     </LinearLayout>
     <ImageView
@@ -182,6 +182,12 @@
             android:layout_marginLeft="15dp"/>
 
     </LinearLayout>
+    <Gallery
+        android:id="@+id/gallery"
+        android:spacing="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </Gallery>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
