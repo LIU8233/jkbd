@@ -183,7 +183,6 @@ public class testActivity extends AppCompatActivity {
             cb3.setVisibility(exam.getItem3().equals("")?View.GONE:View.VISIBLE);
             layout4.setVisibility(exam.getItem4().equals("")?View.GONE:View.VISIBLE);
             cb4.setVisibility(exam.getItem4().equals("")?View.GONE:View.VISIBLE);
-
             if (exam.getUrl()!=null&&!exam.getUrl().equals("")) {
                 mImageView.setVisibility(View.VISIBLE);
                 Picasso.with(testActivity.this)
@@ -192,7 +191,14 @@ public class testActivity extends AppCompatActivity {
             }else {
                 mImageView.setVisibility(View.GONE);
             }
+            resetOptions();
 
+        }
+    }
+
+    private void resetOptions() {
+        for (CheckBox cb:cbs){
+            cb.setChecked(false);
         }
     }
 
