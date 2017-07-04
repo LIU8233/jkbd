@@ -28,13 +28,15 @@ import com.example.administrator.jkbd.biz.IExamBiz;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Administrator on 2017/6/29.
  */
 
 public class testActivity extends AppCompatActivity {
-    TextView tvInfo,tvExamTitle,tv1,tv2,tv3,tv4,tvLoad,tvExamnNo;
+    TextView tvInfo,tvExamTitle,tv1,tv2,tv3,tv4,tvLoad,tvExamnNo,tvTime;
     CheckBox cb1,cb2,cb3,cb4;
     CheckBox[] cbs=new CheckBox[4];
     ImageView mImageView;
@@ -159,8 +161,10 @@ public class testActivity extends AppCompatActivity {
                 Testtime testtime = ExamApplication.getInstance().getmTesttime();
                 if (testtime != null) {
                     showData(testtime);
+                    initTime(testtime);
                 }
-                    showExam(biz.getExam());
+                showExam(biz.getExam());
+
             }
             else {
                 layoutLoading.setEnabled(true);
@@ -172,6 +176,39 @@ public class testActivity extends AppCompatActivity {
 
     }
 
+    private void initTime(final Testtime testtime) {
+        int sumTime=testtime.getLimitTime()*60*1000;
+       final long overTime=sumTime+System.currentTimeMillis();
+        final Timer time=new Timer();
+        time.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                long l=overTime-System.currentTimeMillis();
+                final long min= l/1000/60;
+                final long sec= l/1000%60;
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tvTime.setText("剩余时间:"+min+"分"+sec+"秒");
+                    }
+                });
+            }
+        },0,1000);
+        time.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                time.cancel();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        commit(null);
+                    }
+                });
+            }
+        },sumTime);
+    }
+
+
     private void showExam(Question exam) {
         Log.e("showExam","showExam,exam="+exam);
         if (exam!=null){
@@ -181,6 +218,7 @@ public class testActivity extends AppCompatActivity {
             tv2.setText(exam.getItem2());
             tv3.setText(exam.getItem3());
             tv4.setText(exam.getItem4());
+            tvTime= (TextView) findViewById(R.id.tv_time);
             layout3.setVisibility(exam.getItem3().equals("")?View.GONE:View.VISIBLE);
             cb3.setVisibility(exam.getItem3().equals("")?View.GONE:View.VISIBLE);
             layout4.setVisibility(exam.getItem4().equals("")?View.GONE:View.VISIBLE);
@@ -241,8 +279,7 @@ public class testActivity extends AppCompatActivity {
         tvResult.setText("你的分数为\n"+s+"分");
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
         builder.setIcon(R.mipmap.exam_commit32x32)
-                .setTitle("交卷")
-                .setMessage("你的分数为\n"+s+"分")
+                .setTitle("考试结果")
                 .setView(inflate)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
