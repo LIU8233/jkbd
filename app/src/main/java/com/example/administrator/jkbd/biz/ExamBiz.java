@@ -13,14 +13,16 @@ import java.util.List;
 
 public class ExamBiz implements IExamBiz {
     IExamDao dao;
-    int examInde=0;
-    List<Question> examList=null;
-    public  ExamBiz(){
-        this.dao=new ExamDao();
+    int examInde = 0;
+    List<Question> examList = null;
+
+    public ExamBiz() {
+        this.dao = new ExamDao();
     }
+
     @Override
     public void beginExam() {
-        examInde=0;
+        examInde = 0;
         dao.loadExamInfo();
         dao.loadExamList();
 
@@ -29,10 +31,10 @@ public class ExamBiz implements IExamBiz {
 
     @Override
     public Question getExam() {
-        examList=ExamApplication.getInstance().getMquestion();
-        if (examList!=null) {
+        examList = ExamApplication.getInstance().getMquestion();
+        if (examList != null) {
             return examList.get(examInde);
-        }else {
+        } else {
             return null;
         }
     }
@@ -40,31 +42,41 @@ public class ExamBiz implements IExamBiz {
 
     @Override
     public Question nextQuestion() {
-        if (examList!=null&&examInde<examList.size()-1) {
+        if (examList != null && examInde < examList.size() - 1) {
             examInde++;
             return examList.get(examInde);
-        }else {
+        } else {
             return null;
         }
     }
 
     @Override
     public Question preQuestion() {
-        if (examList!=null&&examInde>0) {
+        if (examList != null && examInde > 0) {
             examInde--;
             return examList.get(examInde);
-        }else {
+        } else {
             return null;
         }
     }
 
     @Override
-    public void commitExam() {
-
+    public int commitExam() {
+        int s = 0;
+        for (Question question : examList) {
+            String userAnswer = question.getUserAnswer();
+            if (userAnswer != null && !userAnswer.equals("")) {
+                if (question.getAnswer().equals(userAnswer)) {
+                    s++;
+                }
+            }
+        }
+        return s;
     }
-
     @Override
-    public String getExamIndex() {
-        return (examInde+1)+".";
+    public String getExamIndex () {
+        return (examInde + 1) + ".";
     }
 }
+
+
