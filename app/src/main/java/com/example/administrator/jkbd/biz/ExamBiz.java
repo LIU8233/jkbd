@@ -39,6 +39,19 @@ public class ExamBiz implements IExamBiz {
         }
     }
 
+    @Override
+    public Question getExam(int index) {
+        examList = ExamApplication.getInstance().getMquestion();
+        examInde=index;
+        if (examList != null) {
+            return examList.get(examInde);
+        } else {
+            return null;
+        }
+    }
+
+
+
 
     @Override
     public Question nextQuestion() {
