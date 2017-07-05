@@ -256,8 +256,17 @@ public class testActivity extends AppCompatActivity {
             if (userAnswer!=null&&!userAnswer.equals("")){
                 int userCB=Integer.parseInt(userAnswer)-1;
                 cbs[userCB].setChecked(true);
+                setOptins(true);
+            }else {
+                setOptins(false);
             }
 
+        }
+    }
+
+    private void  setOptins(boolean hasAaswer){
+        for (CheckBox cb:cbs){
+            cb.setEnabled(!hasAaswer);
         }
     }
 
