@@ -35,6 +35,7 @@ import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2017/6/29.
@@ -103,7 +104,7 @@ public class testActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mGallery = (Gallery) findViewById(R.id.gallery);
+        /*mGallery = (Gallery) findViewById(R.id.gallery);
         cb1 = (CheckBox) findViewById(R.id.cb_01);
         cb2 = (CheckBox) findViewById(R.id.cb_02);
         cb3 = (CheckBox) findViewById(R.id.cb_03);
@@ -117,25 +118,28 @@ public class testActivity extends AppCompatActivity {
         tv2 = (TextView) findViewById(R.id.tv_answer_2);
         tv3 = (TextView) findViewById(R.id.tv_answer_3);
         tv4 = (TextView) findViewById(R.id.tv_answer_4);
-        tvLoad = (TextView) findViewById(R.id.tv_load);
+        tvLoad = (TextView) findViewById(R.id.tv_load);*/
         cbs[0] = cb1;
         cbs[1] = cb2;
         cbs[2] = cb3;
         cbs[3] = cb4;
-        layout3 = (LinearLayout) findViewById(R.id.layout_03);
+        /*layout3 = (LinearLayout) findViewById(R.id.layout_03);
         layout4 = (LinearLayout) findViewById(R.id.layout_04);
-        layoutLoading = (LinearLayout) findViewById(R.id.loading);
-        layoutLoading.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadData();
-
-            }
-        });
+        layoutLoading = (LinearLayout) findViewById(R.id.loading);*/
+//        layoutLoading.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                loadData();
+//
+//            }
+//        });
         cb1.setOnCheckedChangeListener(listener);
         cb2.setOnCheckedChangeListener(listener);
         cb3.setOnCheckedChangeListener(listener);
         cb4.setOnCheckedChangeListener(listener);
+    }
+    @OnClick(R.id.loading) void onLoadClick(){
+        loadData();
     }
 
     CompoundButton.OnCheckedChangeListener listener = new CompoundButton.OnCheckedChangeListener() {
