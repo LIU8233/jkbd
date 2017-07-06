@@ -28,4 +28,9 @@ public class MainActivity extends AppCompatActivity {
     public void exit(View view) {
         finish();
     }
+
+    public void set(View view) {
+        Intent intent=new Intent(MainActivity.this,SetActivity.class);
+        startActivity(intent);
+    }
 }
