@@ -43,6 +43,7 @@ import butterknife.OnClick;
 
 public class testActivity extends AppCompatActivity {
     CheckBox[] cbs = new CheckBox[4];
+    TextView[] tvOps=new TextView[4];
     QuestionAdapter aAdapter;
     IExamBiz biz;
     boolean isExamInfo = false;
@@ -123,6 +124,10 @@ public class testActivity extends AppCompatActivity {
         cbs[1] = cb2;
         cbs[2] = cb3;
         cbs[3] = cb4;
+        tvOps[0]=tv1;
+        tvOps[1]=tv2;
+        tvOps[2]=tv3;
+        tvOps[3]=tv4;
         /*layout3 = (LinearLayout) findViewById(R.id.layout_03);
         layout4 = (LinearLayout) findViewById(R.id.layout_04);
         layoutLoading = (LinearLayout) findViewById(R.id.loading);*/
@@ -279,11 +284,40 @@ public class testActivity extends AppCompatActivity {
                 int userCB = Integer.parseInt(userAnswer) - 1;
                 cbs[userCB].setChecked(true);
                 setOptins(true);
+                setOptionsColor();
+                setAnswerTextColor(userAnswer,exam.getAnswer());
             } else {
                 setOptins(false);
+                setOptionsColor();
             }
 
         }
+    }
+
+    private void setOptionsColor() {
+        for (TextView tvOp : tvOps) {
+            tvOp.setTextColor(getResources().getColor(R.color.black));
+            
+        }
+    }
+
+    private void setAnswerTextColor(String userAnswer, String answer) {
+        int ra=Integer.parseInt(answer)-1;
+        for (int i = 0; i <tvOps.length ; i++) {
+            if (i==ra){
+                tvOps[i].setTextColor(getResources().getColor(R.color.green));
+            }else {
+                if (!userAnswer.equals(answer)){
+                    int ua=Integer.parseInt(userAnswer)-1;
+                    if (i==ua){
+                        tvOps[i].setTextColor(getResources().getColor(R.color.red));
+                    }else {
+                        tvOps[i].setTextColor(getResources().getColor(R.color.black));
+                    }
+                }
+            }
+        }
+
     }
 
     private void setOptins(boolean hasAaswer) {
